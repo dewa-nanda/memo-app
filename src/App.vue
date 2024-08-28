@@ -4,13 +4,16 @@
       Memo app
     </h1>
 
-    <button class="text-xl font-bold border-2 rounded px-2 py-1 hover:text-black hover:bg-white"
-      @click="toggleModal=true"
-    >+</button>
+    <div class="flex gap-3">
+      <input class="rounded-xl bg-slate-400 px-2" v-model="searchInput">
+      <button class="text-xl font-bold border-2 rounded px-2 py-1 hover:text-black hover:bg-white"
+        @click="toggleModal=true"
+      >Add Memo</button>
+    </div>
   </div>
 
   <div class="grid grid-cols-5 gap-4">
-    <div class="border-2 rounded-lg px-2 py-3 flex flex-col justify-between gap-2 h-[220px]" :style="{backgroundColor:memo.backgroundColor}" :key="memo.id" v-for="memo in memos">
+    <div class="border-2 rounded-lg px-2 py-3 flex flex-col justify-between gap-2 h-[220px]" :style="{backgroundColor:memo.backgroundColor}" :key="memo.id" v-for="memo in displayedMemos">
       <h2 class="break-all line-clamp-1 text-black text-3xl font-bold">{{ memo.title }}</h2>
       <p class="justify-evenly text-black line-clamp-4">{{ memo.content }}</p>
       <div class="flex justify-between text-black">
@@ -49,8 +52,9 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
 
+  // define data types
   interface memoItem {
     id: number,
     title: string,
@@ -69,7 +73,10 @@
     content: string
   }
 
+  // define variables
   const toggleModal = ref<boolean>(false)
+  const searchInput = ref<string>('')
+
   const formErrorHandler = ref<formErrorHandler>(
     {
       title : false,
@@ -85,17 +92,25 @@
   )
   
   const memos = ref< Array<memoItem> >([])
+  const displayedMemos = ref< Array<memoItem> >([])
 
+  // define function
   function addMemo() {
-    console.log(inputMemo.value.content);
     if(inputMemo.value.title === '' || inputMemo.value.content === '') {
       inputMemo.value.title === '' ? (formErrorHandler.value.title = true) : (formErrorHandler.value.title = false)
       inputMemo.value.content === '' ? (formErrorHandler.value.content = true) : (formErrorHandler.value.content = false)
     }else{
       memos.value.push({
         id: Date.now(),
-        title: 'title',
-        content: inputMemo.value?.content,
+        title: inputMemo.value.title,
+        content: inputMemo.value.content,
+        date: new Date().toLocaleDateString("en-GB"),
+        backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+      })
+      displayedMemos.value.push({
+        id: Date.now(),
+        title: inputMemo.value.title,
+        content: inputMemo.value.content,
         date: new Date().toLocaleDateString("en-GB"),
         backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`
       })
@@ -121,6 +136,10 @@
     inputMemo.value.content = ''
     formErrorHandler.value.content = false
   }
+
+  watch(searchInput, () => {
+    displayedMemos.value = memos.value.filter(memo => memo.title.includes(searchInput.value))
+  })
 </script>
 
 <style scoped>

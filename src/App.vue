@@ -53,44 +53,23 @@
 
 <script setup lang="ts">
   import { ref, watch } from 'vue'
-
-  // define data types
-  interface memoItem {
-    id: number,
-    title: string,
-    content: string,
-    date: string,
-    backgroundColor: string
-  }
-
-  interface formErrorHandler {
-    title: boolean,
-    content: boolean
-  }
-
-  interface formMemo {
-    title: string,
-    content: string
-  }
+  import type { memoItem, formErrorHandler, formMemo } from './types';
 
   // define variables
   const toggleModal = ref<boolean>(false)
   const searchInput = ref<string>('')
-
   const formErrorHandler = ref<formErrorHandler>(
     {
       title : false,
       content : false
     }
   )
-
   const inputMemo = ref<formMemo>(
     {
       title: '', 
       content: ''
     }
   )
-  
   const memos = ref< Array<memoItem> >([])
   const displayedMemos = ref< Array<memoItem> >([])
 

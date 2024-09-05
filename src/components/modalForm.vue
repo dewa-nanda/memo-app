@@ -78,6 +78,11 @@
   const handlerAddMemo = () => {
     if (inputMemo.value.title && inputMemo.value.content) {
       storeMemo.addMemo(inputMemo)
+      toggleModal.value = false
+      formErrorHandler.value.content = false
+      formErrorHandler.value.title = false
+      inputMemo.value.content = ""
+      inputMemo.value.title = ""
     } else {
       if (!inputMemo.value.title) {
         formErrorHandler.value.title = true

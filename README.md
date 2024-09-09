@@ -20,7 +20,7 @@ Memo App is a simple and intuitive application built using **Vue 3** and **Vite*
 
 ## Demo
 
-You can check out the demo of the app here: [Live Demo](#)
+You can check out the demo of the app here: [Live Demo](https://ket-memo-app.netlify.app/)
 
 ## Project Setup
 

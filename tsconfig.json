@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
     "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
   "include": [
-    "src/**/*",
-    "types/**/*"
-  ],
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.json"
+  ]
 }

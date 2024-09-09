@@ -36,19 +36,15 @@
 
 <script setup lang="ts">
   import Memo from './components/Memo.vue'
-  import ModalForm from './components/modalForm.vue'
+  import ModalForm from './components/ModalForm.vue'
   import nothingIllustration from './assets/image/nothing-illustration.svg'
   import dataMemoJson from './assets/data/memo.json'
   import { useMemosStore } from './utils/store'
-  import { onBeforeMount, ref, watch } from 'vue'
+  import { onBeforeMount, onUpdated, ref } from 'vue'
   import { memoItem } from './types'
 
   const storeMemo = useMemosStore()
   const inputSearch = ref('')
-
-  watch(inputSearch, e => {
-    storeMemo.searchMemo(e)
-  })
 
   onBeforeMount(() => {
     const tempMemos = localStorage.getItem('memos')
@@ -67,6 +63,10 @@
         storeMemo.addMemo(data)
       })
     }
+  })
+
+  onUpdated(() => {
+    console.log('test')
   })
 </script>
 

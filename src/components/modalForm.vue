@@ -1,19 +1,19 @@
 <template>
   <button
-    class="text-xl font-bold border-2 rounded px-2 py-1 hover:text-black hover:bg-white"
+    class="text-xl font-bold border-2 rounded px-2 py-1 hover:text-black bg-[#FFDBB5] hover:bg-[#e7c49e] border-[#6C4E31]"
     @click="toggleModal = true"
   >
     Add Memo
   </button>
 
-  <div class="form-overlay" v-show="toggleModal" @click="toggleModal = false">
+  <div class="form-overlay" v-show="toggleModal" @click="handlerCloseModal">
     <div
-      class="w-1/2 min-h-2/5 flex flex-col bg-slate-500 rounded-xl p-4"
+      class="w-1/2 min-h-2/5 flex flex-col rounded-xl p-4 bg-[#FFDBB5]"
       @click.stop
     >
       <div class="flex justify-between items-center pb-5 basis-1/5">
-        <h1 class="text-2xl">Add Memo</h1>
-        <button class="text-xl w-fit h-fit" @click="toggleModal = false">
+        <h1 class="text-2xl font-bold">Add Memo</h1>
+        <button class="text-xl w-fit h-fit" @click="handlerCloseModal">
           X
         </button>
       </div>
@@ -23,7 +23,7 @@
         @submit.prevent="handlerAddMemo"
       >
         <div class="flex gap-2">
-          <label for="title">Title</label>
+          <label for="title" class="font-bold">Title</label>
           <p class="text-red-400" v-show="formErrorHandler.title">
             | Title tidak boleh kosong!
           </p>
@@ -35,7 +35,7 @@
           v-model="inputMemo.title"
         />
         <div class="flex gap-2">
-          <label for="desc">Description</label>
+          <label for="desc" class="font-bold">Description</label>
           <p class="text-red-400" v-show="formErrorHandler.content">
             | content tidak boleh kosong!
           </p>
@@ -47,7 +47,7 @@
           placeholder="insert description here"
         ></textarea>
         <button
-          class="bg-slate-400 rounded px-2 py-1 w-fit self-end hover:bg-[#121212]"
+          class="bg-[#6C4E31] text-[#FFDBB5] rounded px-6 py-1 w-fit self-end"
           type="submit"
         >
           Submit
@@ -75,6 +75,14 @@
     content: false,
   })
 
+  const handlerCloseModal = () => {
+    toggleModal.value = false
+    formErrorHandler.value.content = false
+    formErrorHandler.value.title = false
+    inputMemo.value.content = ""
+    inputMemo.value.title = ""
+  }
+
   const handlerAddMemo = () => {
     if (inputMemo.value.title && inputMemo.value.content) {
       storeMemo.addMemo(inputMemo)
@@ -96,6 +104,8 @@
       }
     }
   }
+
+
 </script>
 
 <style scoped>

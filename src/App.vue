@@ -7,12 +7,30 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-5 gap-4" v-if="storeMemo.memos.length != 0">
-    <memo v-for="memo in storeMemo.memos" :key="memo.id" :memo="memo" />
-  </div>
-  <div v-else>
-    <img :src="nothingIllustration" class="mx-auto" />
-    <h1 class="text-2xl font-bold text-center -mt-9">Nothing Memo Here Yet!</h1>
+  <div class="border-2 border-[#b4a2a2] rounded-md min-h-[550px] p-2">
+    <template v-if="storeMemo.memos.length != 0">
+      <div
+        :class="[
+          'flex justify-between border-b-2 rounded-xl border-[#b4a2a2] my-1 py-1 px-1',
+        ]"
+      >
+        <h2 class="font-bold text-2xl">List of Memos</h2>
+        <input
+          class="rounded-md px-2 bg-[#FFEAC5] border-2 border-[#6C4E31] focus:outline-none focus:shadow-inner focus:shadow-[#b4a2a2] placeholder:text-[#b4a2a2]"
+          v-model.lazy.trim="inputSearch"
+        />
+      </div>
+      <div class="grid grid-cols-5 gap-4">
+        <memo v-for="memo in storeMemo.memos" :key="memo.id" :memo="memo" />
+      </div>
+    </template>
+
+    <div v-else>
+      <img :src="nothingIllustration" class="mx-auto" />
+      <h1 class="text-2xl font-bold text-center -mt-9">
+        Nothing Memo Here Yet!
+      </h1>
+    </div>
   </div>
 </template>
 
@@ -22,10 +40,15 @@
   import nothingIllustration from './assets/image/nothing-illustration.svg'
   import dataMemoJson from './assets/data/memo.json'
   import { useMemosStore } from './utils/store'
-  import { onBeforeMount, ref } from 'vue'
+  import { onBeforeMount, ref, watch } from 'vue'
   import { memoItem } from './types'
 
   const storeMemo = useMemosStore()
+  const inputSearch = ref('')
+
+  watch(inputSearch, e => {
+    storeMemo.searchMemo(e)
+  })
 
   onBeforeMount(() => {
     const tempMemos = localStorage.getItem('memos')

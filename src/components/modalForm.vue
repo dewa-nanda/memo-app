@@ -29,7 +29,7 @@
           </p>
         </div>
         <input
-          class="px-2 rounded p-2"
+          class="px-2 rounded p-2 bg-[#FFDBB5] border-2 border-[#6C4E31] focus:outline-none focus:shadow-inner focus:shadow-[#b4a2a2] placeholder:text-[#b4a2a2]"
           placeholder="insert title here"
           id="title"
           v-model="inputMemo.title"
@@ -42,7 +42,7 @@
         </div>
         <textarea
           v-model="inputMemo.content"
-          class="w-full basis-full rounded px-2 pt-2"
+          class="px-2 rounded p-2 bg-[#FFDBB5] border-2 border-[#6C4E31] focus:outline-none focus:shadow-inner focus:shadow-[#b4a2a2] placeholder:text-[#b4a2a2]"
           id="desc"
           placeholder="insert description here"
         ></textarea>
@@ -79,8 +79,8 @@
     toggleModal.value = false
     formErrorHandler.value.content = false
     formErrorHandler.value.title = false
-    inputMemo.value.content = ""
-    inputMemo.value.title = ""
+    inputMemo.value.content = ''
+    inputMemo.value.title = ''
   }
 
   const handlerAddMemo = () => {
@@ -89,8 +89,8 @@
       toggleModal.value = false
       formErrorHandler.value.content = false
       formErrorHandler.value.title = false
-      inputMemo.value.content = ""
-      inputMemo.value.title = ""
+      inputMemo.value.content = ''
+      inputMemo.value.title = ''
     } else {
       if (!inputMemo.value.title) {
         formErrorHandler.value.title = true
@@ -104,8 +104,6 @@
       }
     }
   }
-
-
 </script>
 
 <style scoped>

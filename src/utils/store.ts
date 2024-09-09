@@ -28,5 +28,9 @@ export const useMemosStore = defineStore('memos', {
         localStorage.setItem('memos', JSON.stringify(this.memos))
       }
     },
+
+    searchMemo(memoTitle: string) {
+      console.log(memoTitle)
+    },
   },
 })

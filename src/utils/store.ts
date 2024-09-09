@@ -17,11 +17,15 @@ export const useMemosStore = defineStore('memos', {
           16
         )}`,
       })
+
+      localStorage.setItem('memos', JSON.stringify(this.memos))
     },
+
     deleteMemo(id: number) {
       const index = this.memos.findIndex(memo => memo.id === id)
       if (index !== -1) {
         this.memos.splice(index, 1)
+        localStorage.setItem('memos', JSON.stringify(this.memos))
       }
     },
   },

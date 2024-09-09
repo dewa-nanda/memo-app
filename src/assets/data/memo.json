@@ -1,0 +1,9 @@
+[
+    {
+        "id" : 1,
+        "title" : "Default Memo",
+        "content" : "It's default memo, and u can delete if u dont need it",
+        "date" : "24-02-2024",
+        "backgroundColor" : "FFFFF"
+    }
+]

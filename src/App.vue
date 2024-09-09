@@ -51,7 +51,7 @@
 
     if (!tempMemos) {
       localStorage.setItem('memos', JSON.stringify(dataMemoJson))
-      dataMemoJson.map(memo => {
+      dataMemoJson.map((memo: any) => {
         const data = ref(memo)
         storeMemo.addMemo(data)
       })

@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-  import Memo from './components/Memo.vue'
-  import ModalForm from './components/ModalForm.vue'
+  import Memo from '@/components/Memo.vue'
+  import modalForm from '@/components/ModalForm.vue'
   import nothingIllustration from './assets/image/nothing-illustration.svg'
   import dataMemoJson from './assets/data/memo.json'
   import { useMemosStore } from './utils/store'

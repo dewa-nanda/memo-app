@@ -40,8 +40,8 @@
   import { useMemosStore } from './utils/store'
   import { onBeforeMount, onUpdated, ref } from 'vue'
   import { memoItem } from './types'
-  // import Memo from './components/Memo.vue'
-  // import ModalForm from './components/ModalForm.vue'
+  import Memo from './components/Memo.vue'
+  import ModalForm from './components/ModalForm.vue'
 
   const storeMemo = useMemosStore()
   const inputSearch = ref('')

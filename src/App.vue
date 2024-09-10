@@ -15,10 +15,16 @@
         ]"
       >
         <h2 class="font-bold text-2xl">List of Memos</h2>
-        <input
-          class="rounded-md px-2 bg-[#FFEAC5] border-2 border-[#6C4E31] focus:outline-none focus:shadow-inner focus:shadow-[#b4a2a2] placeholder:text-[#b4a2a2]"
-          v-model.lazy.trim="inputSearch"
-        />
+        <div class="flex gap-2 items-center rounded-md bg-[#FFEAC5] border-2 border-[#6C4E31]">
+          <label for="search">
+            <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="ms-2" />
+          </label>
+          <input
+            id="search"
+            class=" focus:outline-none focus:shadow-inner h-full bg-transparent"
+            v-model.lazy.trim="inputSearch"
+          />
+        </div>
       </div>
       <div class="grid grid-cols-5 gap-4">
         <memo v-for="memo in storeMemo.memos" :key="memo.id" :memo="memo" />

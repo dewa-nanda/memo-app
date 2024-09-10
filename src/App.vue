@@ -15,13 +15,18 @@
         ]"
       >
         <h2 class="font-bold text-2xl">List of Memos</h2>
-        <div class="flex gap-2 items-center rounded-md bg-[#FFEAC5] border-2 border-[#6C4E31]">
+        <div
+          class="flex gap-2 items-center rounded-md bg-[#FFEAC5] border-2 border-[#6C4E31]"
+        >
           <label for="search">
-            <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="ms-2" />
+            <font-awesome-icon
+              :icon="['fas', 'magnifying-glass']"
+              class="ms-2"
+            />
           </label>
           <input
             id="search"
-            class=" focus:outline-none focus:shadow-inner h-full bg-transparent"
+            class="focus:outline-none focus:shadow-inner h-full bg-transparent"
             v-model.lazy.trim="inputSearch"
           />
         </div>
@@ -68,10 +73,6 @@
         storeMemo.addMemo(data)
       })
     }
-  })
-
-  onUpdated(() => {
-    console.log('test')
   })
 </script>
 

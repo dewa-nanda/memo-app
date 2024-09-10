@@ -28,5 +28,11 @@ export const useMemosStore = defineStore('memos', {
         localStorage.setItem('memos', JSON.stringify(this.memos))
       }
     },
+
+    editMemo(id: number) {
+      const index = this.memos.findIndex(memo => memo.id === id)
+      this.memos[index].title = 'ganti'
+      localStorage.setItem('memos', JSON.stringify(this.memos))
+    },
   },
 })

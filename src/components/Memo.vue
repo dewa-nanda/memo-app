@@ -16,12 +16,7 @@
       </p>
 
       <div class="flex gap-2 text-xl">
-        <button
-          class="hover:text-green-400 self-end text-green-300"
-          @click="console.log('proses')"
-        >
-          <font-awesome-icon :icon="['fas', 'pen-to-square']" />
-        </button>
+        <EditMemo :targetId="memo.id" />
         <button
           class="hover:text-red-400 self-end text-red-300"
           @click="storeMemo.deleteMemo(memo.id)"
@@ -36,6 +31,7 @@
 <script setup lang="ts">
   import { memoItem } from '../types'
   import { useMemosStore } from '../utils/store'
+  import EditMemo from './EditMemo.vue'
 
   defineProps<{ memo: memoItem }>()
   const storeMemo = useMemosStore()

@@ -1,10 +1,5 @@
 <template>
-  <button
-    class="text-xl font-bold border-2 rounded px-2 py-1 hover:text-black bg-[#FFDBB5] hover:bg-[#e7c49e] border-[#6C4E31]"
-    @click="toggleModal = true"
-  >
-    Add Memo
-  </button>
+  <ButtonForm @click="toggleModal = true"> Add Memo </ButtonForm>
 
   <div class="form-overlay" v-show="toggleModal" @click="handlerCloseModal">
     <div
@@ -61,6 +56,7 @@
   import { ref } from 'vue'
   import { useMemosStore } from '../utils/store'
   import type { formErrorHandler, formMemo } from '../types'
+  import ButtonForm from './custom/buttonForm.vue'
 
   const storeMemo = useMemosStore()
   const toggleModal = ref<boolean>(false)

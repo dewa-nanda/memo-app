@@ -1,13 +1,11 @@
 <template>
-  <div class="flex justify-between items-center mb-8">
+  <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-center mb-4">
     <h1 class="text-4xl font-bold">Memo app</h1>
 
-    <div class="flex gap-3">
-      <modal-form />
-    </div>
+    <modal-form />
   </div>
 
-  <div class="border-2 border-[#b4a2a2] rounded-md min-h-[550px] p-2">
+  <div class="border-2 border-[#b4a2a2] rounded-md h-fit md:min-h-[550px] p-2">
     <template v-if="storeMemo.memos.length != 0">
       <div
         :class="[
@@ -31,12 +29,14 @@
           />
         </div>
       </div>
-      <div class="grid grid-cols-5 gap-4">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+      >
         <memo v-for="memo in storeMemo.memos" :key="memo.id" :memo="memo" />
       </div>
     </template>
 
-    <div v-else>
+    <div v-else class="h-full flex flex-col">
       <img :src="nothingIllustration" class="mx-auto" />
       <h1 class="text-2xl font-bold text-center -mt-9">
         Nothing Memo Here Yet!
